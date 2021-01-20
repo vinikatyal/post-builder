@@ -7,8 +7,10 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
-import EditorPanel from "./components/EditorPanel";
 import theme from "./styles/theme";
+
+// components
+import Routes from "./routes";
 
 function App() {
   return (
@@ -16,10 +18,10 @@ function App() {
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <Container>
-      <Typography variant="h4" component="h4" gutterBottom>
-        Welcome to Adori customiser
-      </Typography>
-        <EditorPanel></EditorPanel>
+        <Typography variant="h4" component="h4" gutterBottom>
+          Welcome to Adori customiser
+        </Typography>
+        <Routes />
       </Container>
     </ThemeProvider>
   );

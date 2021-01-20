@@ -3,23 +3,22 @@ import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
 
-function SelectColors(props) {
+function SelectColors() {
   const [open, setOpen] = useState(false);
+  const [colorValue, setColorValue] = useState("");
 
   const handleOpen = useCallback((e) => {
-    /**
-     * That's important - this is the reason why focus & selection stays
-     * as it is after user clicks on div that fires up react-color.
-     * This needs to be inside react-color so selection will remain and
-     * document.execCommand("foreColor", false, color.hex); will color the text
-     * correctly.
-     */
     e.preventDefault();
     setOpen(true);
   }, []);
 
   const handleClose = useCallback(() => {
     setOpen(false);
+  }, []);
+
+  const handleColorChange = useCallback((color) => {
+    setColorValue(color.hex);
+    document.execCommand("foreColor", false, color.hex);
   }, []);
   return (
     <>
@@ -40,7 +39,7 @@ function SelectColors(props) {
         open={open}
         onClose={handleClose}
       >
-        <SketchPicker color={props.value} onChange={props.handleChange} />
+        <SketchPicker color={colorValue} onChange={handleColorChange} />
       </Popover>
     </>
   );
