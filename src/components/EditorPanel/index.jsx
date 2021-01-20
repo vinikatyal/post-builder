@@ -1,4 +1,4 @@
-import React, { memo, useRef, useCallback } from "react";
+import React, { memo, useRef, useCallback, useState } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 
 function EditorPane() {
   const classes = useStyles();
+  const [colorValue, setColorValue] = useState("");
   const text = useRef("");
 
   const handleChange = (evt) => {
@@ -26,6 +27,7 @@ function EditorPane() {
   };
 
   const handleColorChange = useCallback((color) => {
+    setColorValue(color.hex);
     document.execCommand("foreColor", false, color.hex);
   }, []);
 
@@ -36,7 +38,7 @@ function EditorPane() {
   return (
     <Grid container>
       <Grid item xs={3}>
-        <StyleManager value={text.current} onChange={handleColorChange} />
+        <StyleManager value={colorValue} onChange={handleColorChange} />
 
         <p>Optimise Text</p>
       </Grid>
