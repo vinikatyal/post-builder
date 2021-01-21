@@ -1,11 +1,14 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useContext } from "react";
 import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
 
+// context
+import { StyleContext } from "../../context/StyleContext";
+
 function SelectColors() {
   const [open, setOpen] = useState(false);
-  const [colorValue, setColorValue] = useState("");
+  const { styles, handleStyleChange } = useContext(StyleContext);
 
   const handleOpen = useCallback((e) => {
     e.preventDefault();
@@ -17,16 +20,19 @@ function SelectColors() {
   }, []);
 
   const handleColorChange = useCallback((color) => {
-    setColorValue(color.hex);
-    document.execCommand("foreColor", false, color.hex);
+    handleStyleChange({
+      homePage: {
+        backgroundColor: color.hex,
+      },
+    });
   }, []);
   return (
     <>
       <p>1. Color Themes</p>
+      <p>Background</p>
       <Button variant="contained" color="secondary" onClick={handleOpen}>
         Select Color
       </Button>
-
       <Popover
         anchorOrigin={{
           vertical: "bottom",
@@ -39,7 +45,10 @@ function SelectColors() {
         open={open}
         onClose={handleClose}
       >
-        <SketchPicker color={colorValue} onChange={handleColorChange} />
+        <SketchPicker
+          color={styles.homePage.backgroundColor}
+          onChange={handleColorChange}
+        />
       </Popover>
     </>
   );

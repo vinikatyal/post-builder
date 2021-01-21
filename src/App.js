@@ -4,6 +4,8 @@ import "./index.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 
+import AdoriStyleProvider from "./context/AdoriStyleProvider";
+
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
@@ -21,7 +23,9 @@ function App() {
         <Typography variant="h4" component="h4" gutterBottom>
           Welcome to Adori customiser
         </Typography>
-        <Routes />
+        <AdoriStyleProvider>
+          <Routes />
+        </AdoriStyleProvider>
       </Container>
     </ThemeProvider>
   );
