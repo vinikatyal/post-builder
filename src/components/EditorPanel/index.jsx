@@ -5,7 +5,7 @@ import { get } from "lodash";
 // common components
 import Editor from "react-medium-editor";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -22,8 +22,7 @@ import "medium-editor/dist/css/themes/default.css";
 
 const useStyles = makeStyles({
   editable: {
-    width: "75%",
-    minHeight: "50p",
+    minHeight: "50px",
     border: "1px dashed #aaa",
     padding: "5px",
     resize: "none",
@@ -31,8 +30,26 @@ const useStyles = makeStyles({
   formControl: {
     minWidth: 120,
   },
-  margin8: {
+  margin16: {
+    marginBottom: "16px",
+  },
+  header: {
+    minHeight: "56px",
+    position: "relative",
+    display: "flex",
+    width: "100%",
+    boxSizing: "border-box",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    boxShadow: "inset 0 -1px 0 rgba(230, 230, 230, 1)",
     marginBottom: "8px",
+  },
+  adoriPanel: {
+    width: "100%",
+    padding: "16px",
+  },
+  img: {
+    maxWidth: "100%",
   },
 });
 
@@ -40,9 +57,9 @@ function EditorPane() {
   const classes = useStyles();
   const { styles } = useContext(StyleContext);
   const [page, setPage] = useState("homePage");
-  const [heading, setHeading] = useState("What's in a title anyway?");
+  const [heading, setHeading] = useState("Rick & Carly In The Morning");
   const [description, setDescription] = useState(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "It's not very often that two people dating air it all out LIVE on the radio every morning.  Rick & Carly share WAY more than they should, leaving you with a mouth wide open, eyes bulging, holy moly kinda feeling every morning."
   );
 
   const handlePageChange = (event) => {
@@ -76,31 +93,47 @@ function EditorPane() {
         <StyleManager />
       </Grid>
       <Grid item xs={9}>
-        <Paper
-          id="adoriPanel"
+        <div
+          className={classes.adoriPanel}
           style={{
             background: get(styles, "homePage.backgroundColor"),
           }}
         >
-          <Editor
-            className={classes.editable}
-            text={heading}
-            onChange={setHeading}
-            options={{
-              toolbar: {
-                buttons: [
-                  "bold",
-                  "italic",
-                  "underline",
-                  "anchor",
-                  "h2",
-                  "h3",
-                  "quote",
-                ],
-              },
-            }}
-          />
-          <div className={classes.margin8} />
+          <div className={classes.header}>
+            <Typography variant="h5" component="h5" gutterBottom>
+              Listen Boise
+            </Typography>
+          </div>
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
+              <img
+                className={classes.img}
+                src="https://cdn.images.adorilabs.com/v1/ad55c498-2ab8-4ee0-a1e6-090f170d18b7.jpeg"
+                alt="episodeImage"
+              />
+            </Grid>
+            <Grid item xs={9}>
+              <Editor
+                className={classes.editable}
+                text={heading}
+                onChange={setHeading}
+                options={{
+                  toolbar: {
+                    buttons: [
+                      "bold",
+                      "italic",
+                      "underline",
+                      "anchor",
+                      "h2",
+                      "h3",
+                      "quote",
+                    ],
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+          <div className={classes.margin16} />
 
           <Editor
             className={classes.editable}
@@ -120,7 +153,7 @@ function EditorPane() {
               },
             }}
           />
-        </Paper>
+        </div>
       </Grid>
     </Grid>
   );

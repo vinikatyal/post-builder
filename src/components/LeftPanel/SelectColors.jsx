@@ -34,18 +34,18 @@ function SelectColors() {
       handleStyleChange({
         homePage: {
           backgroundColor: color.hex,
-          foregroundColor: styles.homePage.foregroundColor,
+          accentColor: styles.homePage.accentColor,
         },
       });
     },
-    [handleStyleChange, styles.homePage.foregroundColor]
+    [handleStyleChange, styles.homePage.accentColor]
   );
 
   const handleforegroundColorChange = useCallback(
     (color) => {
       handleStyleChange({
         homePage: {
-          foregroundColor: color.hex,
+          accentColor: color.hex,
           backgroundColor: styles.homePage.backgroundColor,
         },
       });
@@ -77,7 +77,7 @@ function SelectColors() {
         />
       </Popover>
 
-      <p>Primary Color</p>
+      <p>Accent Color</p>
       <Button variant="contained" color="secondary" onClick={handleOpenFore}>
         Select Color
       </Button>
@@ -94,7 +94,7 @@ function SelectColors() {
         onClose={handleCloseFore}
       >
         <SketchPicker
-          color={styles.homePage.foregroundColor}
+          color={styles.homePage.accentColor}
           onChange={handleforegroundColorChange}
         />
       </Popover>

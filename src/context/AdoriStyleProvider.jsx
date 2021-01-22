@@ -4,7 +4,7 @@ import { StyleContext } from "./StyleContext";
 
 const AdoriStyleProvider = ({ children }) => {
   const [styles, setStyles] = useState({
-    homePage: { backgroundColor: "#fff", foregroundColor: "#000" },
+    homePage: { backgroundColor: "#fff", accentColor: "#000" },
   });
 
   const handleStyleChange = (value) => {
