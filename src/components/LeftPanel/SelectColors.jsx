@@ -8,6 +8,7 @@ import { StyleContext } from "../../context/StyleContext";
 
 function SelectColors() {
   const [open, setOpen] = useState(false);
+  const [openFore, setOpenFore] = useState(false);
   const { styles, handleStyleChange } = useContext(StyleContext);
 
   const handleOpen = useCallback((e) => {
@@ -19,15 +20,37 @@ function SelectColors() {
     setOpen(false);
   }, []);
 
+  const handleOpenFore = useCallback((e) => {
+    e.preventDefault();
+    setOpenFore(true);
+  }, []);
+
+  const handleCloseFore = useCallback(() => {
+    setOpenFore(false);
+  }, []);
+
   const handleColorChange = useCallback(
     (color) => {
       handleStyleChange({
         homePage: {
           backgroundColor: color.hex,
+          foregroundColor: styles.homePage.foregroundColor,
         },
       });
     },
-    [handleStyleChange]
+    [handleStyleChange, styles.homePage.foregroundColor]
+  );
+
+  const handleforegroundColorChange = useCallback(
+    (color) => {
+      handleStyleChange({
+        homePage: {
+          foregroundColor: color.hex,
+          backgroundColor: styles.homePage.backgroundColor,
+        },
+      });
+    },
+    [handleStyleChange, styles.homePage.backgroundColor]
   );
   return (
     <>
@@ -51,6 +74,28 @@ function SelectColors() {
         <SketchPicker
           color={styles.homePage.backgroundColor}
           onChange={handleColorChange}
+        />
+      </Popover>
+
+      <p>Primary Color</p>
+      <Button variant="contained" color="secondary" onClick={handleOpenFore}>
+        Select Color
+      </Button>
+      <Popover
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "center",
+          horizontal: "left",
+        }}
+        open={openFore}
+        onClose={handleCloseFore}
+      >
+        <SketchPicker
+          color={styles.homePage.foregroundColor}
+          onChange={handleforegroundColorChange}
         />
       </Popover>
     </>
