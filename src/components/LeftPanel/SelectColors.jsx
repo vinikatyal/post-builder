@@ -19,13 +19,16 @@ function SelectColors() {
     setOpen(false);
   }, []);
 
-  const handleColorChange = useCallback((color) => {
-    handleStyleChange({
-      homePage: {
-        backgroundColor: color.hex,
-      },
-    });
-  }, []);
+  const handleColorChange = useCallback(
+    (color) => {
+      handleStyleChange({
+        homePage: {
+          backgroundColor: color.hex,
+        },
+      });
+    },
+    [handleStyleChange]
+  );
   return (
     <>
       <p>1. Color Themes</p>
