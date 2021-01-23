@@ -15,7 +15,7 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import Tooltip from "@material-ui/core/Tooltip";
 
 import StyleManager from "../LeftPanel/StyleManager";
-
+import MediaControlCard from "./MediaControlCard";
 // context
 import { StyleContext } from "../../context/StyleContext";
 
@@ -23,7 +23,7 @@ import { StyleContext } from "../../context/StyleContext";
 import "medium-editor/dist/css/medium-editor.css";
 import "medium-editor/dist/css/themes/default.css";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   editable: {
     minHeight: "50px",
     border: "1px dashed #aaa",
@@ -34,10 +34,10 @@ const useStyles = makeStyles({
     minWidth: 120,
   },
   margin16: {
-    marginBottom: "16px",
+    marginBottom: theme.spacing(2),
   },
   header: {
-    minHeight: "56px",
+    minHeight: theme.spacing(7),
     position: "relative",
     display: "flex",
     width: "100%",
@@ -56,10 +56,10 @@ const useStyles = makeStyles({
   },
   mobileIcons: {
     "& > *": {
-      margin: "8px",
+      margin: theme.spacing(1),
     },
   },
-});
+}));
 
 function EditorPane() {
   const classes = useStyles();
@@ -210,6 +210,12 @@ function EditorPane() {
           <Typography variant="h5" component="h5" gutterBottom>
             Episodes
           </Typography>
+          <Grid container>
+            <MediaControlCard />
+            <MediaControlCard />
+            <MediaControlCard />
+            <MediaControlCard />
+          </Grid>
         </div>
       </Grid>
     </Grid>
