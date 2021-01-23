@@ -19,6 +19,11 @@ const theme = createMuiTheme({
         backgroundColor: "#fff", // 5d737e
       },
     },
+    MuiIconButton: {
+      root: {
+        "&:hover": {},
+      },
+    },
     MuiButton: {
       root: {
         margin: "5px",

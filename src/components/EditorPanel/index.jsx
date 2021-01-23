@@ -10,6 +10,9 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import IconButton from "@material-ui/core/IconButton";
+import SvgIcon from "@material-ui/core/SvgIcon";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import StyleManager from "../LeftPanel/StyleManager";
 
@@ -51,6 +54,11 @@ const useStyles = makeStyles({
   img: {
     maxWidth: "100%",
   },
+  mobileIcons: {
+    "& > *": {
+      margin: "8px",
+    },
+  },
 });
 
 function EditorPane() {
@@ -75,6 +83,7 @@ function EditorPane() {
         alignItems="center"
         item
         xs={12}
+        className={classes.mobileIcons}
       >
         <FormControl className={classes.formControl}>
           <InputLabel id="select-label">Pages</InputLabel>
@@ -88,6 +97,49 @@ function EditorPane() {
             <MenuItem value={"audioPage"}>Audio Home</MenuItem>
           </Select>
         </FormControl>
+
+        <div>
+          <Tooltip title="Desktop" aria-label="desktop">
+            <IconButton disableRipple>
+              <SvgIcon
+                width="19"
+                height="16"
+                viewBox="0 0 19 16"
+                fill="rgba(8, 8, 8, 1)"
+              >
+                <path d="M18 .45c-.3-.3-.65-.45-1.08-.45H1.54C1.12 0 .75.15.45.45.15.75 0 1.12 0 1.54V12c0 .42.15.79.45 1.09.3.3.67.45 1.09.45h5.23c0 .24-.05.5-.15.75-.1.25-.21.48-.31.67-.1.2-.16.33-.16.42 0 .17.06.32.19.44a.6.6 0 0 0 .43.18h4.92a.6.6 0 0 0 .44-.18.59.59 0 0 0 .18-.44c0-.08-.05-.22-.16-.41-.1-.2-.2-.43-.3-.69-.1-.26-.16-.5-.16-.74h5.23c.43 0 .79-.15 1.09-.45.3-.3.45-.67.45-1.09V1.54c0-.42-.15-.79-.45-1.09zm-.77 9.09a.3.3 0 0 1-.1.21.3.3 0 0 1-.2.1H1.52a.3.3 0 0 1-.2-.1.3.3 0 0 1-.1-.21v-8a.3.3 0 0 1 .1-.22.3.3 0 0 1 .2-.09h15.4a.3.3 0 0 1 .2.1c.07.05.1.13.1.2v8z"></path>
+              </SvgIcon>
+            </IconButton>
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip title="Tablet" aria-label="tablet">
+            <IconButton disableRipple>
+              <SvgIcon
+                width="14"
+                height="17"
+                viewBox="0 0 14 17"
+                fill="rgba(117, 117, 117, 1)"
+              >
+                <path d="M11.78.43H1.68C.87.43.22 1.08.22 1.88v13.36c0 .8.65 1.44 1.44 1.44h10.11c.8 0 1.45-.64 1.45-1.44V1.88c0-.8-.65-1.45-1.45-1.45zM6.73 15.9a.62.62 0 1 1 0-1.24.62.62 0 0 1 0 1.24zm5.23-2.18c0 .17-.14.32-.31.32H1.81a.32.32 0 0 1-.32-.32V1.98c0-.17.14-.31.32-.31h9.84c.17 0 .31.14.31.31v11.73z"></path>
+              </SvgIcon>
+            </IconButton>
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip title="Mobile" aria-label="mobile">
+            <IconButton disableRipple>
+              <SvgIcon
+                width="10"
+                height="17"
+                viewBox="0 0 10 17"
+                fill="rgba(117, 117, 117, 1)"
+              >
+                <path d="M8.12.43H1.4C.75.43.23.96.23 1.6v13.67c0 .64.52 1.16 1.16 1.16h6.73c.65 0 1.17-.52 1.17-1.16V1.6C9.29.96 8.77.43 8.12.43zm-5.02.71h3.32c.09 0 .15.13.15.28 0 .16-.06.28-.15.28H3.1c-.09 0-.15-.12-.15-.28 0-.15.06-.28.15-.28zm1.66 14.14a.74.74 0 1 1 0-1.49.74.74 0 0 1 0 1.5zm3.66-2.54H1.1V2.4h7.32v10.34z"></path>
+              </SvgIcon>
+            </IconButton>
+          </Tooltip>
+        </div>
       </Grid>
       <Grid item xs={3}>
         <StyleManager />
@@ -153,6 +205,11 @@ function EditorPane() {
               },
             }}
           />
+          <div className={classes.margin16} />
+
+          <Typography variant="h5" component="h5" gutterBottom>
+            Episodes
+          </Typography>
         </div>
       </Grid>
     </Grid>
