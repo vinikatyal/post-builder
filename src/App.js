@@ -4,7 +4,9 @@ import "./index.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 
+// context
 import AdoriStyleProvider from "./context/AdoriStyleProvider";
+import AdoriDeviceProvider from "./context/AdoriDeviceProvider";
 
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -24,7 +26,9 @@ function App() {
           Welcome to Adori customiser
         </Typography>
         <AdoriStyleProvider>
-          <Routes />
+          <AdoriDeviceProvider>
+            <Routes />
+          </AdoriDeviceProvider>
         </AdoriStyleProvider>
       </Container>
     </ThemeProvider>

@@ -1,6 +1,7 @@
-import React, { memo, useState, useContext } from "react";
+import React, { memo, useState, useContext, useCallback } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { get } from "lodash";
+import { ResizableBox } from "react-resizable";
 
 // common components
 import Editor from "react-medium-editor";
@@ -18,10 +19,13 @@ import StyleManager from "../LeftPanel/StyleManager";
 import MediaControlCard from "./MediaControlCard";
 // context
 import { StyleContext } from "../../context/StyleContext";
+import { DeviceContext } from "../../context/DeviceContext";
 
 // import styles
 import "medium-editor/dist/css/medium-editor.css";
 import "medium-editor/dist/css/themes/default.css";
+import "react-resizable/css/styles.css";
+import { DEVICE_WIDTH } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   editable: {
@@ -63,7 +67,10 @@ const useStyles = makeStyles((theme) => ({
 
 function EditorPane() {
   const classes = useStyles();
+  // context
   const { styles } = useContext(StyleContext);
+  const { device, handleDeviceChange } = useContext(DeviceContext);
+
   const [page, setPage] = useState("homePage");
   const [heading, setHeading] = useState("Rick & Carly In The Morning");
   const [description, setDescription] = useState(
@@ -74,6 +81,9 @@ function EditorPane() {
     setPage(event.target.value);
   };
 
+  const handleDevice = (device) => {
+    handleDeviceChange(DEVICE_WIDTH[device]);
+  };
   return (
     <Grid container>
       <Grid
@@ -100,7 +110,7 @@ function EditorPane() {
 
         <div>
           <Tooltip title="Desktop" aria-label="desktop">
-            <IconButton disableRipple>
+            <IconButton disableRipple onClick={() => handleDevice("desktop")}>
               <SvgIcon
                 width="19"
                 height="16"
@@ -114,7 +124,7 @@ function EditorPane() {
         </div>
         <div>
           <Tooltip title="Tablet" aria-label="tablet">
-            <IconButton disableRipple>
+            <IconButton disableRipple onClick={() => handleDevice("tablet")}>
               <SvgIcon
                 width="14"
                 height="17"
@@ -128,7 +138,7 @@ function EditorPane() {
         </div>
         <div>
           <Tooltip title="Mobile" aria-label="mobile">
-            <IconButton disableRipple>
+            <IconButton disableRipple onClick={() => handleDevice("mobile")}>
               <SvgIcon
                 width="10"
                 height="17"
@@ -141,82 +151,89 @@ function EditorPane() {
           </Tooltip>
         </div>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <StyleManager />
       </Grid>
-      <Grid item xs={9}>
-        <div
-          className={classes.adoriPanel}
-          style={{
-            background: get(styles, "homePage.backgroundColor"),
-          }}
+      <Grid item xs={10}>
+        <ResizableBox
+          resizeHandles={["ne", "e", "se"]}
+          width={device.width}
+          minConstraints={[479, 479]}
+          maxConstraints={[991, 991]}
         >
-          <div className={classes.header}>
-            <Typography variant="h5" component="h5" gutterBottom>
-              Listen Boise
-            </Typography>
-          </div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <img
-                className={classes.img}
-                src="https://cdn.images.adorilabs.com/v1/ad55c498-2ab8-4ee0-a1e6-090f170d18b7.jpeg"
-                alt="episodeImage"
-              />
-            </Grid>
-            <Grid item xs={9}>
-              <Editor
-                className={classes.editable}
-                text={heading}
-                onChange={setHeading}
-                options={{
-                  toolbar: {
-                    buttons: [
-                      "bold",
-                      "italic",
-                      "underline",
-                      "anchor",
-                      "h2",
-                      "h3",
-                      "quote",
-                    ],
-                  },
-                }}
-              />
-            </Grid>
-          </Grid>
-          <div className={classes.margin16} />
-
-          <Editor
-            className={classes.editable}
-            text={description}
-            onChange={setDescription}
-            options={{
-              toolbar: {
-                buttons: [
-                  "bold",
-                  "italic",
-                  "underline",
-                  "anchor",
-                  "h2",
-                  "h3",
-                  "quote",
-                ],
-              },
+          <div
+            className={classes.adoriPanel}
+            style={{
+              background: get(styles, "homePage.backgroundColor"),
             }}
-          />
-          <div className={classes.margin16} />
+          >
+            <div className={classes.header}>
+              <Typography variant="h5" component="h5" gutterBottom>
+                Listen Boise
+              </Typography>
+            </div>
+            <Grid container spacing={3}>
+              <Grid item xs={3}>
+                <img
+                  className={classes.img}
+                  src="https://cdn.images.adorilabs.com/v1/ad55c498-2ab8-4ee0-a1e6-090f170d18b7.jpeg"
+                  alt="episodeImage"
+                />
+              </Grid>
+              <Grid item xs={9}>
+                <Editor
+                  className={classes.editable}
+                  text={heading}
+                  onChange={setHeading}
+                  options={{
+                    toolbar: {
+                      buttons: [
+                        "bold",
+                        "italic",
+                        "underline",
+                        "anchor",
+                        "h2",
+                        "h3",
+                        "quote",
+                      ],
+                    },
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <div className={classes.margin16} />
 
-          <Typography variant="h5" component="h5" gutterBottom>
-            Episodes
-          </Typography>
-          <Grid container>
-            <MediaControlCard />
-            <MediaControlCard />
-            <MediaControlCard />
-            <MediaControlCard />
-          </Grid>
-        </div>
+            <Editor
+              className={classes.editable}
+              text={description}
+              onChange={setDescription}
+              options={{
+                toolbar: {
+                  buttons: [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "anchor",
+                    "h2",
+                    "h3",
+                    "quote",
+                  ],
+                },
+              }}
+            />
+            <div className={classes.margin16} />
+
+            <Typography variant="h5" component="h5" gutterBottom>
+              Episodes
+            </Typography>
+            <Grid container>
+              <MediaControlCard />
+              <MediaControlCard />
+              <MediaControlCard />
+              <MediaControlCard />
+            </Grid>
+          </div>
+        </ResizableBox>
       </Grid>
     </Grid>
   );
