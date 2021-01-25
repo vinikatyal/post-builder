@@ -55,6 +55,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "inset 0 -1px 0 rgba(230, 230, 230, 1)",
     marginBottom: "8px",
   },
+  box: {
+    boxShadow:
+      "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
+  },
   adoriPanel: {
     width: "100%",
     padding: "16px",
@@ -164,6 +168,7 @@ function EditorPane() {
           width={device.width}
           minConstraints={[479, 479]}
           maxConstraints={[991, 991]}
+          className={classes.box}
         >
           <div
             className={classes.adoriPanel}
@@ -172,7 +177,14 @@ function EditorPane() {
             }}
           >
             <div className={classes.header}>
-              <Typography variant="h5" component="h5" gutterBottom>
+              <Typography
+                style={{
+                  color: get(styles, "homePage.accentColor"),
+                }}
+                variant="h5"
+                component="h5"
+                gutterBottom
+              >
                 Listen Boise
               </Typography>
             </div>
@@ -198,7 +210,6 @@ function EditorPane() {
                         "anchor",
                         "h2",
                         "h3",
-                        "quote",
                       ],
                     },
                   }}
@@ -220,13 +231,12 @@ function EditorPane() {
                     "anchor",
                     "h2",
                     "h3",
-                    "quote",
                   ],
                 },
               }}
             />
             <div className={classes.margin16} />
-            <Episodes />
+            <Episodes accentColor={get(styles, "homePage.accentColor")} />
           </div>
         </ResizableBox>
       </Grid>

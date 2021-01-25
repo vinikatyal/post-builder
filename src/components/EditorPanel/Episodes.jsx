@@ -14,25 +14,32 @@ import ViewComfyIcon from "@material-ui/icons/ViewComfy";
 import MediaControlCard from "./MediaControlCard";
 import MediaControlList from "./MediaControlList";
 
-function Episodes() {
+function Episodes(props) {
   const [layoutType, setLayoutType] = useState("grid"); // temp value
   const toggle = (value) => {
     setLayoutType(value);
   };
   return (
     <>
-      <Typography variant="h5" component="h5" gutterBottom>
+      <Typography
+        style={{
+          color: props.accentColor,
+        }}
+        variant="h5"
+        component="h5"
+        gutterBottom
+      >
         Episodes
       </Typography>
       <Grid container>
         <Tooltip title="Grid View" aria-label="grid">
-          <IconButton disableRipple onClick={() => toggle("grid")}>
+          <IconButton onClick={() => toggle("grid")}>
             <ViewComfyIcon />
           </IconButton>
         </Tooltip>
 
         <Tooltip title="List View" aria-label="list">
-          <IconButton disableRipple onClick={() => toggle("list")}>
+          <IconButton onClick={() => toggle("list")}>
             <ListIcon />
           </IconButton>
         </Tooltip>

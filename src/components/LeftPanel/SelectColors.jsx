@@ -1,7 +1,9 @@
 import React, { memo, useState, useCallback, useContext } from "react";
+import { SketchPicker } from "react-color";
+
+// material components
 import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
-import { SketchPicker } from "react-color";
 
 // context
 import { StyleContext } from "../../context/StyleContext";
