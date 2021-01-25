@@ -1,4 +1,4 @@
-import React, { memo, useState, useContext, useCallback } from "react";
+import React, { memo, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { get } from "lodash";
 import { ResizableBox } from "react-resizable";
@@ -16,15 +16,19 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import Tooltip from "@material-ui/core/Tooltip";
 
 import StyleManager from "../LeftPanel/StyleManager";
-import MediaControlCard from "./MediaControlCard";
+
 // context
 import { StyleContext } from "../../context/StyleContext";
 import { DeviceContext } from "../../context/DeviceContext";
+
+import Episodes from "./Episodes";
 
 // import styles
 import "medium-editor/dist/css/medium-editor.css";
 import "medium-editor/dist/css/themes/default.css";
 import "react-resizable/css/styles.css";
+
+// constants
 import { DEVICE_WIDTH } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
@@ -222,16 +226,7 @@ function EditorPane() {
               }}
             />
             <div className={classes.margin16} />
-
-            <Typography variant="h5" component="h5" gutterBottom>
-              Episodes
-            </Typography>
-            <Grid container>
-              <MediaControlCard />
-              <MediaControlCard />
-              <MediaControlCard />
-              <MediaControlCard />
-            </Grid>
+            <Episodes />
           </div>
         </ResizableBox>
       </Grid>
