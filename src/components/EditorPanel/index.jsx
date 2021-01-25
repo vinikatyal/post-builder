@@ -44,8 +44,14 @@ const useStyles = makeStyles((theme) => ({
   margin16: {
     marginBottom: theme.spacing(2),
   },
+  paddingDiv: {
+    padding: theme.spacing(2),
+  },
+  logo: {
+    marginLeft: theme.spacing(2),
+  },
   header: {
-    minHeight: theme.spacing(7),
+    minHeight: theme.spacing(8),
     position: "relative",
     display: "flex",
     width: "100%",
@@ -61,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
   },
   adoriPanel: {
     width: "100%",
-    padding: "16px",
   },
   img: {
     maxWidth: "100%",
@@ -177,18 +182,20 @@ function EditorPane() {
             }}
           >
             <div className={classes.header}>
-              <Typography
-                style={{
-                  color: get(styles, "homePage.accentColor"),
-                }}
-                variant="h5"
-                component="h5"
-                gutterBottom
-              >
-                Listen Boise
-              </Typography>
+              <div className={classes.logo}>
+                <Typography
+                  style={{
+                    color: get(styles, "homePage.accentColor"),
+                  }}
+                  variant="h5"
+                  component="h5"
+                  gutterBottom
+                >
+                  Listen Boise
+                </Typography>
+              </div>
             </div>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} className={classes.paddingDiv}>
               <Grid item xs={3}>
                 <img
                   className={classes.img}
@@ -217,24 +224,25 @@ function EditorPane() {
               </Grid>
             </Grid>
             <div className={classes.margin16} />
-
-            <Editor
-              className={classes.editable}
-              text={description}
-              onChange={setDescription}
-              options={{
-                toolbar: {
-                  buttons: [
-                    "bold",
-                    "italic",
-                    "underline",
-                    "anchor",
-                    "h2",
-                    "h3",
-                  ],
-                },
-              }}
-            />
+            <Grid container className={classes.paddingDiv}>
+              <Editor
+                className={classes.editable}
+                text={description}
+                onChange={setDescription}
+                options={{
+                  toolbar: {
+                    buttons: [
+                      "bold",
+                      "italic",
+                      "underline",
+                      "anchor",
+                      "h2",
+                      "h3",
+                    ],
+                  },
+                }}
+              />
+            </Grid>
             <div className={classes.margin16} />
             <Episodes accentColor={get(styles, "homePage.accentColor")} />
           </div>

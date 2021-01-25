@@ -1,5 +1,7 @@
 import React, { memo, useState } from "react";
 
+import { makeStyles } from "@material-ui/styles";
+
 // material ui components
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -14,11 +16,20 @@ import ViewComfyIcon from "@material-ui/icons/ViewComfy";
 import MediaControlCard from "./MediaControlCard";
 import MediaControlList from "./MediaControlList";
 
+const useStyles = makeStyles((theme) => ({
+  paddingDiv: {
+    padding: theme.spacing(2),
+  },
+}));
+
 function Episodes(props) {
+  const classes = useStyles();
+
   const [layoutType, setLayoutType] = useState("grid"); // temp value
   const toggle = (value) => {
     setLayoutType(value);
   };
+
   return (
     <>
       <Typography
@@ -28,6 +39,7 @@ function Episodes(props) {
         variant="h5"
         component="h5"
         gutterBottom
+        className={classes.paddingDiv}
       >
         Episodes
       </Typography>
@@ -44,7 +56,7 @@ function Episodes(props) {
           </IconButton>
         </Tooltip>
       </Grid>
-      <Grid container>
+      <Grid container spacing={3} className={classes.paddingDiv}>
         {layoutType === "list" ? (
           <>
             <MediaControlList />
