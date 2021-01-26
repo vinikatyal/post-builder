@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useContext } from "react";
 
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -7,11 +7,15 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import ImageIcon from "@material-ui/icons/Image";
 
+// context
+import { StyleContext } from "../../context/StyleContext";
+
 function LogoConfiguration() {
   const [value, setValue] = useState("text");
-  const [picture, setPicture] = useState(null);
   const [imgData, setImgData] = useState(null);
   const inputOpenFileRef = React.createRef();
+  const { handleLogoChange } = useContext(StyleContext);
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -20,13 +24,12 @@ function LogoConfiguration() {
     inputOpenFileRef.current.click();
   };
 
-  const handleImageChange = (e) => {
+  const handleImage = (e) => {
     if (e.target.files[0]) {
-      console.log("picture: ", e.target.files);
-      setPicture(e.target.files[0]);
       const reader = new FileReader();
       reader.addEventListener("load", () => {
         setImgData(reader.result);
+        handleLogoChange({ type: "logo", src: reader.result });
       });
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -50,13 +53,17 @@ function LogoConfiguration() {
         <div>
           <input
             ref={inputOpenFileRef}
-            onChange={handleImageChange}
+            onChange={handleImage}
             type="file"
             accept="image/*"
             style={{ display: "none" }}
           />
           <Button color="primary" onClick={() => showOpenFileDlg()}>
-            {imgData ? <img src={imgData} alt="logo" width={25} /> : <ImageIcon />}
+            {imgData ? (
+              <img src={imgData} alt="logo" width={25} />
+            ) : (
+              <ImageIcon />
+            )}
             Add
           </Button>
         </div>

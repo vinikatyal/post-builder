@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 function EditorPane() {
   const classes = useStyles();
   // context
-  const { styles } = useContext(StyleContext);
+  const { styles, logo } = useContext(StyleContext);
   const { device, handleDeviceChange } = useContext(DeviceContext);
 
   const [page, setPage] = useState("homePage");
@@ -182,16 +182,20 @@ function EditorPane() {
           >
             <div className={classes.header}>
               <div className={classes.logo}>
-                <Typography
-                  style={{
-                    color: get(styles, "homePage.logoColor"),
-                  }}
-                  variant="h5"
-                  component="h5"
-                  gutterBottom
-                >
-                  Listen Boise
-                </Typography>
+                {logo.type === "text" ? (
+                  <Typography
+                    style={{
+                      color: get(logo, "color"),
+                    }}
+                    variant="h5"
+                    component="h5"
+                    gutterBottom
+                  >
+                    Listen Boise
+                  </Typography>
+                ) : (
+                  <img src={logo.src} alt="logoImg" width={47} height={35} />
+                )}
               </div>
             </div>
             <Grid container spacing={3} className={classes.paddingDiv}>

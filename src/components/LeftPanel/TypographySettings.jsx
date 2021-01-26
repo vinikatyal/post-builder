@@ -2,10 +2,10 @@ import React, { memo } from "react";
 import { makeStyles } from "@material-ui/styles";
 
 // material components
-// import FormControl from "@material-ui/core/FormControl";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import Select from "@material-ui/core/Select";
-// import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 import EditButton from "../EditorPanel/EditButton";
 
@@ -23,7 +23,7 @@ function TypographySettings() {
     <div className={classes.root}>
       <p>3. Typography</p>
 
-      {/* <p>Fonts</p>
+      <p>Fonts</p>
       <FormControl className={classes.formControl}>
         <InputLabel id="select-label">Primary font</InputLabel>
         <Select labelId="select-label" id="selectFont">
@@ -31,7 +31,7 @@ function TypographySettings() {
           <MenuItem value={"serif2"}>Serif 2</MenuItem>
           <MenuItem value={"sansserif"}>Sans Serif</MenuItem>
         </Select>
-      </FormControl> */}
+      </FormControl>
       <p>Fast styling</p>
       <EditButton cmd="italic" />
       <EditButton cmd="bold" />
