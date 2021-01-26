@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 import SelectColors from "./SelectColors";
 import TypographySettings from "./TypographySettings";
+import LogoConfiguration from "./LogoConfiguration";
 
 function StyleManager() {
   return (
@@ -10,8 +11,12 @@ function StyleManager() {
       <Typography variant="h5" component="h5" gutterBottom>
         Style Manager
       </Typography>
-      <p>One thousand years ago, superstition and the sword ruled.</p>
+      <p>
+        <i>One thousand years ago, superstition and the sword ruled.</i>
+      </p>
 
+      {/* // configuration */}
+      <LogoConfiguration />
       <SelectColors />
       <TypographySettings />
     </div>

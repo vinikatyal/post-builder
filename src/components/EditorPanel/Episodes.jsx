@@ -56,20 +56,21 @@ function Episodes(props) {
           </IconButton>
         </Tooltip>
       </Grid>
+      {/* // Add loop */}
       <Grid container spacing={3} className={classes.paddingDiv}>
         {layoutType === "list" ? (
           <>
-            <MediaControlList />
-            <MediaControlList />
-            <MediaControlList />
-            <MediaControlList />
+            <MediaControlList accentColor={props.accentColor} />
+            <MediaControlList accentColor={props.accentColor} />
+            <MediaControlList accentColor={props.accentColor} />
+            <MediaControlList accentColor={props.accentColor} />
           </>
         ) : (
           <>
-            <MediaControlCard />
-            <MediaControlCard />
-            <MediaControlCard />
-            <MediaControlCard />
+            <MediaControlCard accentColor={props.accentColor} />
+            <MediaControlCard accentColor={props.accentColor} />
+            <MediaControlCard accentColor={props.accentColor} />
+            <MediaControlCard accentColor={props.accentColor} />
           </>
         )}
       </Grid>

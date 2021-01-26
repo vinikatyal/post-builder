@@ -56,7 +56,7 @@ function SelectColors() {
   );
   return (
     <>
-      <p>1. Color Themes</p>
+      <p>2. Color Themes</p>
       <p>Background</p>
       <Button variant="contained" color="secondary" onClick={handleOpen}>
         Select Color
@@ -80,7 +80,7 @@ function SelectColors() {
       </Popover>
 
       <p>Accent Color</p>
-      <Button variant="contained" color="secondary" onClick={handleOpenFore}>
+      <Button variant="contained" color="primary" onClick={handleOpenFore}>
         Select Color
       </Button>
       <Popover

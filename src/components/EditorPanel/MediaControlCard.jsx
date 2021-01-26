@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaControlCard() {
+export default function MediaControlCard(props) {
   const classes = useStyles();
 
   return (
@@ -54,13 +54,26 @@ export default function MediaControlCard() {
         </CardContent>
         <div className={classes.controls}>
           <IconButton aria-label="previous">
-            <SkipPreviousIcon />
+            <SkipPreviousIcon
+              style={{
+                color: props.accentColor,
+              }}
+            />
           </IconButton>
           <IconButton aria-label="play/pause">
-            <PlayArrowIcon className={classes.playIcon} />
+            <PlayArrowIcon
+              className={classes.playIcon}
+              style={{
+                color: props.accentColor,
+              }}
+            />
           </IconButton>
           <IconButton aria-label="next">
-            <SkipNextIcon />
+            <SkipNextIcon
+              style={{
+                color: props.accentColor,
+              }}
+            />
           </IconButton>
         </div>
       </div>

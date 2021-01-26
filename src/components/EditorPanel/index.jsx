@@ -33,8 +33,7 @@ import { DEVICE_WIDTH } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   editable: {
-    minHeight: "50px",
-    border: "1px dashed #aaa",
+    minHeight: "70px",
     padding: "5px",
     resize: "none",
   },
@@ -185,7 +184,7 @@ function EditorPane() {
               <div className={classes.logo}>
                 <Typography
                   style={{
-                    color: get(styles, "homePage.accentColor"),
+                    color: get(styles, "homePage.logoColor"),
                   }}
                   variant="h5"
                   component="h5"
