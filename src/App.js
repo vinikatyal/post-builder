@@ -21,9 +21,9 @@ function App() {
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <Container>
+      <Container maxWidth="xl">
         <Typography variant="h4" component="h4" gutterBottom>
-          Welcome to Adori customiser
+          Adori studio BETA
         </Typography>
         <AdoriStyleProvider>
           <AdoriDeviceProvider>

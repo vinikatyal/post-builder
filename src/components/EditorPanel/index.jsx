@@ -166,7 +166,9 @@ function EditorPane() {
       <Grid item xs={2}>
         <StyleManager />
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={1}>
+      </Grid>
+      <Grid item xs={9}>
         <ResizableBox
           resizeHandles={["ne", "e", "se"]}
           width={device.width}

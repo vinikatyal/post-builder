@@ -1,4 +1,6 @@
-import React, { memo, useState, useContext } from "react";
+import React, { memo, useState, useContext, useCallback } from "react";
+import { makeStyles } from "@material-ui/styles";
+import { SketchPicker } from "react-color";
 
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -10,11 +12,19 @@ import ImageIcon from "@material-ui/icons/Image";
 // context
 import { StyleContext } from "../../context/StyleContext";
 
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  sketchPick: {
+    width: 180,
+  },
+}));
+
 function LogoConfiguration() {
+  const classes = useStyles();
   const [value, setValue] = useState("text");
   const [imgData, setImgData] = useState(null);
   const inputOpenFileRef = React.createRef();
-  const { handleLogoChange } = useContext(StyleContext);
+  const { handleLogoChange, logo } = useContext(StyleContext);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -23,6 +33,16 @@ function LogoConfiguration() {
   const showOpenFileDlg = () => {
     inputOpenFileRef.current.click();
   };
+
+  const handleColorChange = useCallback(
+    (color) => {
+      handleLogoChange({
+        color: color.hex,
+        type: "text",
+      });
+    },
+    [handleLogoChange]
+  );
 
   const handleImage = (e) => {
     if (e.target.files[0]) {
@@ -66,6 +86,16 @@ function LogoConfiguration() {
             )}
             Add
           </Button>
+        </div>
+      )}
+
+      {value === "text" && (
+        <div>
+          <SketchPicker
+            className={classes.sketchPick}
+            color={logo.color}
+            onChange={handleColorChange}
+          />
         </div>
       )}
     </div>
