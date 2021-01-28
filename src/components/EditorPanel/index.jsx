@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "5px",
     resize: "none",
   },
+  sideBar: {
+    zIindex: "2",
+    display: "flex",
+    height: "100vh",
+    overflowY: "auto",
+  },
   formControl: {
     minWidth: 120,
   },
@@ -163,17 +169,17 @@ function EditorPane() {
           </Tooltip>
         </div>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={3} className={classes.sideBar}>
         <StyleManager />
-      </Grid>
-      <Grid item xs={1}>
       </Grid>
       <Grid item xs={9}>
         <ResizableBox
           resizeHandles={["ne", "e", "se"]}
           width={device.width}
-          minConstraints={[479, 479]}
-          maxConstraints={[991, 991]}
+          minConstraints={([DEVICE_WIDTH["mobile"]], [DEVICE_WIDTH["mobile"]])}
+          maxConstraints={
+            ([DEVICE_WIDTH["desktop"]], [DEVICE_WIDTH["desktop"]])
+          }
           className={classes.box}
         >
           <div

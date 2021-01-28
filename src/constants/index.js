@@ -1,6 +1,6 @@
 export const DEVICE_WIDTH = {
   desktop: {
-    width: 991,
+    width: 1025,
   },
   tablet: {
     width: 767,
