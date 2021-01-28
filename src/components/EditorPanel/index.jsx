@@ -176,10 +176,8 @@ function EditorPane() {
         <ResizableBox
           resizeHandles={["ne", "e", "se"]}
           width={device.width}
-          minConstraints={([DEVICE_WIDTH["mobile"]], [DEVICE_WIDTH["mobile"]])}
-          maxConstraints={
-            ([DEVICE_WIDTH["desktop"]], [DEVICE_WIDTH["desktop"]])
-          }
+          minConstraints={[DEVICE_WIDTH["mobile"], DEVICE_WIDTH["mobile"]]}
+          maxConstraints={[DEVICE_WIDTH["desktop"], DEVICE_WIDTH["desktop"]]}
           className={classes.box}
         >
           <div
